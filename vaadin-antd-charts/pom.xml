@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+
+    <groupId>io.gitee.muyun2800</groupId>
+    <artifactId>vaadin-antd-charts</artifactId>
+    <name>vaadin-antd-charts</name>
+    <version>1.0.0-SNAPSHOT</version>
+
+    <description>
+        vaadin-antd-charts是ant design charts的vaadin实现，让java开发人员只使用java语言就可以快速开发出ant design风格的中后台界面。
+    </description>
+    <url>https://gitee.com/muyun2800/vaadin-antd-charts</url>
+
+    <scm>
+        <connection>scm:git@gitee.com:muyun2800/vaadin-antd-charts.git</connection>
+        <developerConnection>scm:git@gitee.com:muyun2800/vaadin-antd-charts.git</developerConnection>
+        <url>https://gitee.com/muyun2800/vaadin-antd-charts</url>
+    </scm>
+
+    <developers>
+        <developer>
+            <name>muyun</name>
+            <email>254213048@qq.com</email>
+        </developer>
+    </developers>
+
+
+
+    <properties>
+        <!--        <vaadin.version>24.4.20</vaadin.version>-->
+        <vaadin.version>24.7.4</vaadin.version>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <maven.compiler.compilerVersion>17</maven.compiler.compilerVersion>
+        <maven.compiler.release>17</maven.compiler.release>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    </properties>
+
+    <organization>
+        <name>###author###</name>
+    </organization>
+    <licenses>
+        <license>
+            <name>Apache 2</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.vaadin</groupId>
+                <artifactId>vaadin-bom</artifactId>
+                <type>pom</type>
+                <scope>import</scope>
+                <version>${vaadin.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <repositories>
+        <repository>
+            <id>central</id>
+            <url>https://repo.maven.apache.org/maven2</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>Vaadin Directory</id>
+            <url>https://maven.vaadin.com/vaadin-addons</url>
+        </repository>
+        <!-- Repository needed for prerelease versions of Vaadin -->
+        <repository>
+            <id>Vaadin prereleases</id>
+            <url>https://maven.vaadin.com/vaadin-prereleases</url>
+        </repository>
+    </repositories>
+
+    <pluginRepositories>
+        <pluginRepository>
+            <id>central</id>
+            <url>https://repo.maven.apache.org/maven2</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </pluginRepository>
+        <!-- Repository needed for prerelease versions of Vaadin -->
+        <pluginRepository>
+            <id>Vaadin prereleases</id>
+            <url>https://maven.vaadin.com/vaadin-prereleases</url>
+        </pluginRepository>
+    </pluginRepositories>
+
+
+    <dependencies>
+        <!--        <dependency>-->
+        <!--            <groupId>com.muyun</groupId>-->
+        <!--            <artifactId>vaadin-antd</artifactId>-->
+        <!--            <version>1.0.0-SNAPSHOT</version>-->
+        <!--        </dependency>-->
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.38</version>
+            <optional>true</optional>
+        </dependency>
+
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+            <version>5.8.33</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.vaadin</groupId>
+            <artifactId>flow-react</artifactId>
+            <scope>compile</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.vaadin</groupId>
+            <artifactId>flow-server</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.vaadin</groupId>
+            <artifactId>vaadin-core</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.vaadin</groupId>
+                    <artifactId>vaadin-core-components</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>com.vaadin</groupId>
+                    <artifactId>copilot</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>com.vaadin</groupId>
+                    <artifactId>vaadin-icons-flow</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>com.vaadin</groupId>
+                    <artifactId>vaadin-time-picker-flow</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>com.vaadin</groupId>
+                    <artifactId>vaadin-popover-flow</artifactId>
+                </exclusion>
+                <!-- 移除默认样式-->
+                <exclusion>
+                    <groupId>com.vaadin</groupId>
+                    <artifactId>vaadin-lumo-theme</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>com.vaadin</groupId>
+                    <artifactId>vaadin-material-theme</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <!-- 上面排除了 vaadin-core的一些包之后，会排除掉一些基础包，这里要重新引入以下2个-->
+        <dependency>
+            <groupId>com.vaadin</groupId>
+            <artifactId>flow-html-components</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.vaadin</groupId>
+            <artifactId>vaadin-flow-components-base</artifactId>
+            <version>${vaadin.version}</version>
+        </dependency>
+
+
+    </dependencies>
+
+    <build>
+        <!-- Define all plugin versions. Plugins are configured in profiles. -->
+        <pluginManagement>
+            <plugins>
+                <!-- Use newer assembly plugin. 2.x has some problems. -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-assembly-plugin</artifactId>
+                    <version>3.4.2</version>
+                </plugin>
+                <plugin>
+                    <groupId>com.vaadin</groupId>
+                    <artifactId>vaadin-maven-plugin</artifactId>
+                    <version>${vaadin.version}</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+
+
+        <!-- Configure default build plugins -->
+        <!-- Configure default build plugins -->
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.4.2</version>
+                <configuration>
+                    <archive>
+                        <index>true</index>
+                        <manifest>
+                            <addClasspath>false</addClasspath>
+                            <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+                        </manifest>
+                        <manifestEntries>
+                            <Vaadin-Package-Version>1</Vaadin-Package-Version>
+                        </manifestEntries>
+                    </archive>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.11.0</version>
+                <configuration>
+                    <source>17</source>
+                    <target>17</target>
+                    <compilerVersion>17</compilerVersion>
+                    <release>17</release>
+                </configuration>
+            </plugin>
+
+
+        </plugins>
+
+
+    </build>
+
+
+
+    <!-- Plugin configuration for different profiles -->
+    <profiles>
+        <!-- Build application for production mode -->
+        <profile>
+            <id>production</id>
+            <build>
+                <plugins>
+                    <!--  打包源码  -->
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-source-plugin</artifactId>
+                        <version>3.3.1</version>
+                        <configuration>
+                            <!-- 源码包随着项目打成的jar包安装到本地仓库或者私服、公服 -->
+                            <attach>true</attach>
+                            <defaultManifestFile />
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <phase>compile</phase>
+                                <goals>
+                                    <goal>jar</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-javadoc-plugin</artifactId>
+                        <version>3.11.2</version>
+                        <executions>
+                            <execution>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>jar</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                        <configuration>
+                            <!-- 禁用严格语法检测 -->
+                            <doclint>none</doclint>
+                        </configuration>
+                    </plugin>
+
+                    <!-- 中间库发布配置-->
+                    <plugin>
+                        <groupId>org.sonatype.central</groupId>
+                        <artifactId>central-publishing-maven-plugin</artifactId>
+                        <version>0.7.0</version>
+                        <extensions>true</extensions>
+                        <configuration>
+                            <publishingServerId>central</publishingServerId>
+                        </configuration>
+                    </plugin>
+                    <!-- 要发布至中间库，需要配置gpg签名-->
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                        <version>3.2.7</version>
+                        <executions>
+                            <execution>
+                                <id>sign-artifacts</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <!-- 生成前端资源，包括package.json, node_modules, 便于使用vscode等进行开发 -->
+        <profile>
+            <id>generate-frontend</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>com.vaadin</groupId>
+                        <artifactId>vaadin-maven-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>build-frontend</goal>
+                                </goals>
+                                <configuration>
+                                    <optimizeBundle>true</optimizeBundle>
+                                    <cleanFrontendFiles>false</cleanFrontendFiles>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+</project>

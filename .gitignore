@@ -1,0 +1,18 @@
+
+# idea相关
+.idea
+*.iml
+**/target
+.scannerwork
+
+# vscode相关
+.vscode
+
+# jvm错误相关
+hs_err_pid*
+error-screenshots
+
+# 前端相关
+**/node_modules
+**/frontend/generated
+**/bundles/*.bundle

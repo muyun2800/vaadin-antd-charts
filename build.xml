@@ -1,0 +1,34 @@
+<project name="MyProject" default="build" basedir=".">
+    <description>Project Description</description>
+
+
+    <target name="build">
+
+        <echo>删除文件夹1...</echo>
+        <delete dir="vaadin-antd-charts/target"/>
+        <delete dir="vaadin-antd-charts/node_modules"/>
+
+        <echo>echo>删除文件1...</echo>
+        <delete file="vaadin-antd-charts/package.json"/>
+        <delete file="vaadin-antd-charts/pnpm-lock.yaml"/>
+        <delete file="vaadin-antd-charts/pnpm-lock.yaml"/>
+        <delete file="vaadin-antd-charts/tsconfig.json"/>
+        <delete file="vaadin-antd-charts/types.d.ts"/>
+        <delete file="vaadin-antd-charts/vite.config.ts"/>
+        <delete file="vaadin-antd-charts/vite.generated.ts"/>
+
+
+        <echo>echo>删除文件夹2...</echo>
+        <delete dir="vaadin-antd-charts-demo/target"/>
+        <delete dir="vaadin-antd-charts-demo/node_modules"/>
+        <delete dir="vaadin-antd-charts-demo/src/main/bundles"/>
+        <delete dir="vaadin-antd-charts-demo/src/main/frontend/generated"/>
+
+        <echo>echo>删除文件2...</echo>
+        <delete file="vaadin-antd-charts-demo/tsconfig.json"/>
+
+
+    </target>
+
+
+</project>
